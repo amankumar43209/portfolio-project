@@ -1,15 +1,20 @@
 "use client";
 
 import { Points, PointMaterial } from "@react-three/drei";
-import { Canvas, type PointsProps, useFrame } from "@react-three/fiber/";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as random from "maath/random";
-import { useState, useRef, Suspense } from "react";
+import { useState, useRef, Suspense, ComponentProps } from "react";
 import type { Points as PointsType } from "three";
 
-export const StarBackground = (props: PointsProps) => {
+// Properly inferred type for <Points />
+type StarBackgroundProps = ComponentProps<typeof Points>;
+
+export const StarBackground = (props: StarBackgroundProps) => {
   const ref = useRef<PointsType | null>(null);
-  const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(1500), { radius: 1.2 })
+
+  // Fix: explicitly assert to Float32Array
+  const [sphere] = useState<Float32Array>(() =>
+    random.inSphere(new Float32Array(15000), { radius: 1.2 }) as Float32Array
   );
 
   useFrame((_state, delta) => {
@@ -24,7 +29,7 @@ export const StarBackground = (props: PointsProps) => {
       <Points
         ref={ref}
         stride={3}
-        positions={new Float32Array(sphere)}
+        positions={sphere}
         frustumCulled
         {...props}
       >
@@ -47,5 +52,5 @@ export const StarsCanvas = () => (
         <StarBackground />
       </Suspense>
     </Canvas>
-  </div>
+  </div>
 );
