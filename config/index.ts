@@ -29,7 +29,7 @@
 //     "ui/ux",
 //     "js",
 //     "javascript",
-//     // "typescript",
+//     "typescript",
 //     "eslint",
 //     "html",
 //     "css",
