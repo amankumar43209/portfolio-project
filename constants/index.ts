@@ -235,7 +235,7 @@ export const PROJECTS = [
     description:
       'Embark on an interstellar journey with my "Space Themed Website", a mesmerizing space-themed website that invites you to explore the cosmic wonders beyond our world.',
     image: "/projects/project-1.png",
-    link: "#",
+    link: "https://portfolio-project-5jf4.onrender.com",
   },
 ] as const;
 
